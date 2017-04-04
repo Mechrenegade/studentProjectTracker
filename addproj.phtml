@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Sign Up</title>
+
+    <!-- Bootstrap core CSS -->
+    <!-- Bootstrap core CSS -->
+    <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <!-- Custom styles for this template -->
+    <link href="../css/signin.css" rel="stylesheet">
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../js/ie10-viewport-bug-workaround.js"></script>
+<script src="../bower_components/jquery/dist/jquery.js"></script>
+<script src="../js/main.js"></script>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="row">
+		<form class="form-horizontal" method="POST" action="index.php/products" enctype="multipart/form-data">
+			<fieldset>
+				
+				<!-- Form Name -->
+				<legend>Add Project</legend>
+				
+				<!-- Text input-->
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="name">Project Name</label>
+					<div class="col-md-4">
+						<input id="name" name="name" type="text" placeholder="Name" class="form-control input-md" required="">
+					
+					</div>
+				</div>
+
+                <div class="form-group">
+					<label class="col-md-4 control-label" for="name">Course Code</label>
+					<div class="col-md-4">
+						<input id="ccode" name="ccode" type="text" placeholder="Course Code" class="form-control input-md" required="">
+					
+					</div>
+				</div>
+				
+				<!-- Text input-->
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="price">Course Name</label>
+					<div class="col-md-4">
+						<input id="cname" name="cname" type="text" placeholder="Course Name" class="form-control input-md" required="">
+					
+					</div>
+				</div>
+
+                <div class="form-group">
+					<label class="col-md-4 control-label" for="price">Git Hub link</label>
+					<div class="col-md-4">
+						<input id="ghlink" name="ghlink" type="text" placeholder="Git link" class="form-control input-md" required="">
+					
+					</div>
+				</div>
+
+                <div class="form-group">
+					<label class="col-md-4 control-label" for="price">Year</label>
+					<div class="col-md-4">
+						<input id="year" name="year" type="text" placeholder="Year" class="form-control input-md" required="">
+					
+					</div>
+				</div>
+
+                
+                <div class="form-group">
+					<label class="col-md-4 control-label" for="price">Upload Your Project file</label>
+					<div class="col-md-4">
+						<input id="upload" name="upload" type="file" class="form-control input-md">
+                        <input type="submit" value="Upload" name="submit">
+					</div>
+				</div>
+				
+				<!-- Button -->
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="saveBnt"></label>
+					<div class="col-md-4">
+						<button id="saveBnt" name="saveBnt" class="btn btn-primary">Save Project</button>
+					</div>
+				</div>
+			
+			</fieldset>
+		</form>
+	</div>
+
+    <div id="resp"></div>
+</div> <!-- /container -->
+
+</body>
+</html>

@@ -1,0 +1,113 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<meta name="description" content="">
+	<meta name="author" content="">
+	
+	<title>Country Names</title>
+	
+	<!-- Bootstrap core CSS -->
+	<link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+	
+	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+	<link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+	
+	<!-- Custom styles for this template -->
+	<link href="css/jumbotron-narrow.css" rel="stylesheet">
+	<link href="css/signin.css" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+<div class="container">
+	<div class="header clearfix">
+		<nav>
+			<ul class="nav nav-pills pull-right">
+				<li role="presentation" class="active"><a href="index.php">Home</a></li>
+				<li role="presentation" class="active"><a href="templates/signin.phtml">Sign In</a></li>
+				<li role="presentation" class="active" action=""><a href="templates/signup.phtml">Sign Up</a></li>
+			</ul>
+		</nav>
+		<h3 class="text-muted">Student Project Tracker</h3>
+	</div>
+	
+	<div class="jumbotron">
+		<h1>Upload your projects for Comparison Here! </h1>
+		<p class="lead">Where Students can view and compare passed projects to that of their own</p>
+	</div>
+	
+	<!--	Form Row-->
+	<div class="row">
+			
+				<!-- Button -->
+				
+					<div class="col-md-4">
+						<button id="addnew" name="addnew" class="btn btn-primary"><a href="templates/addproj.phtml">Add a new Project</button>
+					</div>
+			
+	</div>
+	<!-- End Row for Form -->
+	
+	
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2 table-responsive">
+			<h4>Products</h4>
+			<p>A table highlighting the available products</p>
+			<div id="table_sec"></div>
+		</div>
+	</div>
+	
+	<footer class="footer">
+		<p>INFO3410 / COMP3550</p>
+	</footer>
+
+</div> <!-- /container -->
+
+
+<script type="text/template" id="table_heading">
+	<table class="table table-bordered">
+		<thead>
+		<tr>
+			<th>Id</th><th>Projname</th><th>CourseCode</th><th>CourseName</th><th>Year</th><th>members</th>
+		</tr>
+		</thead>
+		<tbody>
+</script>
+
+<table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Projname</th>
+                <th>CourseCode</th>
+                <th>Year</th>
+            </tr>
+        </thead>
+        <tbody>
+    <?php
+		$conn = new mysqli("localhost","root","","projects");
+        $sql = "SELECT * FROM `projects`";
+        $res = $conn->query($sql);
+        if ($res){
+            $row = $res->fetch_assoc();
+            while ($row != null){
+                // print the rows of the table
+                echo "<tr>";
+                echo "<td>" . $row['projname'] . "</td>";
+                echo "<td>" . $row['coursecode'] . "</td>";
+                echo "<td>" . $row['coursename'] . "</td>";
+                echo "</tr>";
+                $row = $res->fetch_assoc();
+            }
+        }
+    ?>
+
+
+</body>
+</html>
