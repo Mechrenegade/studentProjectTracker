@@ -26,7 +26,7 @@ function getAllProjects(){
 
 
 function saveProject($name, $price, $countryId){
-	$sql = "INSERT INTO `products` (`id`, `countryid`, `name`, `price`) VALUES (NULL, $countryId, '$name', $price);";
+	$sql = "INSERT INTO `projects` (`id`, `projectid`, `studentname`, `year`) VALUES (NULL, $projectid, `$studentname`, $year);";
 	$db = getDBConnection();
 	$id = -1;
 	if ($db != null){
