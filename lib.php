@@ -39,4 +39,9 @@ function saveProject($name, $price, $countryId){
 	return $id;
 }
 
+
+
+
+
+
 //echo saveProduct("Pants", 234, 23);
