@@ -9,7 +9,7 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 	
-	<title>Country Names</title>
+	<title>Student Project Tracker</title>
 	
 	<!-- Bootstrap core CSS -->
 	<link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -49,7 +49,7 @@
 				<!-- Button -->
 				
 					<div class="col-md-4">
-						<button id="addnew" name="addnew" class="btn btn-primary"><a href="templates/addproj.phtml">Add a new Project</a></button>
+						<button id="addnew" name="addnew" class="btn btn-primary"><a href="templates/addproj.phtml">Add a new Project</button>
 					</div>
 			
 	</div>
@@ -84,24 +84,35 @@
 <table class="table table-bordered">
         <thead>
             <tr>
-                <th>Projname</th>
-                <th>CourseCode</th>
-                <th>Year</th>
+                <th>Project ID</th>
+				<th>Project Name</th>
+                <th>Course Code</th>
+				<th>Course Name</th>
+				<th>GitHub Link</th>
+				<th>Year</th>
+				<th>File</th>
+                <th>Group Members</th>
             </tr>
         </thead>
         <tbody>
     <?php
-		$conn = new mysqli("localhost","root","","projects");
-        $sql = "SELECT * FROM `projects`";
+		
+		$conn = getDBConnection();
+        $sql = "SELECT * FROM `project`";
         $res = $conn->query($sql);
         if ($res){
             $row = $res->fetch_assoc();
             while ($row != null){
                 // print the rows of the table
                 echo "<tr>";
+				echo "<td>" . $row['id'] . "</td>";
                 echo "<td>" . $row['projname'] . "</td>";
                 echo "<td>" . $row['coursecode'] . "</td>";
                 echo "<td>" . $row['coursename'] . "</td>";
+				echo "<td>" . $row['githublink'] . "</td>";
+				echo "<td>" . $row['year'] . "</td>";
+				echo "<td>" . $row['file'] . "</td>";
+				echo "<td>" . $row['members'] . "</td>";
                 echo "</tr>";
                 $row = $res->fetch_assoc();
             }
