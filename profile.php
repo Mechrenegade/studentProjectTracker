@@ -16,14 +16,14 @@ $configuration = [
 		'renderer' => new PhpRenderer("./templates")
 ];
 $container = new Container($configuration);
-$app2 = new App($container);
+$app3 = new App($container);
 
 // Uses a PHP templating system to display HTML when requested
-$app2->get('/', function (Request $request, Response $response) {
-    return $this->renderer->render($response, "/signup.phtml");
+$app3->get('/', function (Request $request, Response $response) {
+    return $this->renderer->render($response, "/addproj.phtml");
 });
 
-$app2->post("/signUpAction", function(Request $request, Response $response){
+$app3->post("/addAction", function(Request $request, Response $response){
 	$post = $request->getParsedBody();
 
 	$username = $post['username'];
@@ -47,6 +47,5 @@ $app2->post("/signUpAction", function(Request $request, Response $response){
 	return $response;
 });
 
-$app2->run();
+$app3->run();
 ?>
-

@@ -1,7 +1,4 @@
 <!DOCTYPE html>
-<?php
-	include 'upload.php';
-?>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -13,15 +10,15 @@
 
     <!-- Bootstrap core CSS -->
     <!-- Bootstrap core CSS -->
-    <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
 
     <!-- Custom styles for this template -->
-    <link href="../css/signin.css" rel="stylesheet">
+    <link href="css/signin.css" rel="stylesheet">
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script src="../js/ie10-viewport-bug-workaround.js"></script>
-<script src="../bower_components/jquery/dist/jquery.js"></script>
-<script src="../js/main.js"></script>
+<script src="js/ie10-viewport-bug-workaround.js"></script>
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="js/main.js"></script>
 </head>
 
 <body>
@@ -29,14 +26,23 @@
 <div class="container">
 
     <div class="row">
-		<form class="form-horizontal" method="POST" action="../upload.php" enctype="multipart/form-data">
+		<form class="form-horizontal" method="POST" action="upload.php" enctype="multipart/form-data">
 			<fieldset>
-				
-				<!-- Form Name -->
-				<legend>Add Project</legend>
-				
+				<legend>Add a Project</legend>
+				 <div class="form-group">
+					<label class="col-md-4 control-label" for="price">Upload Your Project file</label>
+					<div class="col-md-4">
+						<input id="upload" name="upload" type="file" class="form-control input-md">
+                        <input type="submit" value="Upload" name="submit">
+					</div>
+				</div>
+			</fieldset>
+		</form>
+
+		<form class="form-horizontal" method="POST" action="profile.php/addAction">
+			<fieldset>	
 				<!-- Text input-->
-				<!--<div class="form-group">
+				<div class="form-group">
 					<label class="col-md-4 control-label" for="name">Project Name</label>
 					<div class="col-md-4">
 						<input id="name" name="name" type="text" placeholder="Name" class="form-control input-md" required="">
@@ -76,17 +82,8 @@
 					
 					</div>
 				</div>
-				-->
-                
-                <div class="form-group">
-					<label class="col-md-4 control-label" for="price">Upload Your Project file</label>
-					<div class="col-md-4">
-						<input id="upload" name="upload" type="file" class="form-control input-md">
-                        <input type="submit" value="Upload" name="submit">
-					</div>
-				</div>
 				
-				<!-- Button -->
+			<!-- Button -->
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="saveBnt"></label>
 					<div class="col-md-4">
@@ -96,6 +93,7 @@
 			
 			</fieldset>
 		</form>
+
 	</div>
 
     <div id="resp"></div>
