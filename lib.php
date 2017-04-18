@@ -39,6 +39,20 @@ function saveProject($name, $price, $countryId){
 	return $id;
 }
 
+function createUser($username, $password, $firstname, $lastname, $schoolId, $acctype, $email){
+	$sql = "INSERT INTO `user` (`id`, `username`, `password`, `firstname`, `lastname`, `Email`, `schoolIdnum`, `accounttype`, `approval`, `datecreated`)
+			VALUES (NULL, '$username', '$password', '$firstname', '$lastname', '$email', '$schoolId', '$acctype', 'No', CURRENT_TIMESTAMP);";
+	$db = getDBConnection();
+	$id = -1;
+	if ($db != null){
+		$res = $db->query($sql);
+		if ($res && $db->insert_id > 0){
+			$id = $db->insert_id;
+		}
+		$db->close();
+	}
+	return $id;
+}
 
 
 

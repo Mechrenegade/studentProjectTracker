@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 17, 2017 at 10:06 PM
+-- Generation Time: Apr 18, 2017 at 02:40 AM
 -- Server version: 10.1.19-MariaDB
 -- PHP Version: 5.6.28
 
@@ -77,7 +77,9 @@ INSERT INTO `user` (`id`, `username`, `password`, `firstname`, `lastname`, `Emai
 (1, 'stacy', '4ff18f00176f0f2b3ae5477d5c64490c7a748808', '', '0', '', 0, 'Student', 'No', '2017-03-31 00:31:53'),
 (2, 'aaron', 'e1952705cc0e6ec262d611301793720f7bfe5669', '', '0', '', 0, 'Student', 'No', '2017-04-06 16:50:20'),
 (3, 'rebecca', '2cec08d12876881ed7328cc7fdde856d6e91d0be', '', '0', '', 0, 'Student', 'No', '2017-04-06 16:50:20'),
-(4, 'listra', 'b1ec0f56f225344da9c5d8130e1bd1cfc83f7013', '', '0', '', 0, 'Student', 'No', '2017-04-06 16:50:46');
+(4, 'listra', 'b1ec0f56f225344da9c5d8130e1bd1cfc83f7013', '', '0', '', 0, 'Student', 'No', '2017-04-06 16:50:46'),
+(5, 'stu12', 'pw', 'Aaron', 'Granger', 'Ag@gmail.com', 123456, 'student', 'No', '2017-04-17 20:24:02'),
+(6, '', '', '', '', '', 0, '1', 'No', '2017-04-18 00:03:21');
 
 --
 -- Indexes for dumped tables
@@ -108,7 +110,7 @@ ALTER TABLE `project`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

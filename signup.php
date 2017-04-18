@@ -16,14 +16,14 @@ $configuration = [
 		'renderer' => new PhpRenderer("./templates")
 ];
 $container = new Container($configuration);
-$app = new App($container);
+$app2 = new App($container);
 
 // Uses a PHP templating system to display HTML when requested
-$app->get('/', function (Request $request, Response $response) {
+$app2->get('/', function (Request $request, Response $response) {
     return $this->renderer->render($response, "/signup.phtml");
 });
 
-$app->post("/signUpAction", function(Request $request, Response $response){
+$app2->post("/signUpAction", function(Request $request, Response $response){
 	$post = $request->getParsedBody();
 	$username = $post['username'];
 	$password = $post['password'];
@@ -46,6 +46,6 @@ $app->post("/signUpAction", function(Request $request, Response $response){
 	return $response;
 });
 
-$app->run();
+$app2->run();
 ?>
 
