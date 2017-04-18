@@ -25,6 +25,30 @@ $app2->get('/', function (Request $request, Response $response) {
 
 $app2->post("/signUpAction", function(Request $request, Response $response){
 	$post = $request->getParsedBody();
+    /*
+    if (isset($_POST['username'])) {
+        $username = $post['username'];
+    }
+    if (isset($_POST['password'])) {
+        $password = $post['password'];
+    }
+    if (isset($_POST['fname'])) {
+        $fname = $post['fname'];
+    }
+    if (isset($_POST['lname'])) {
+        $lname = $post['lname'];
+    }
+    if (isset($_POST['sid'])) {
+        $schoolId = $post['sid'];
+    }
+    if (isset($_POST['email'])) {
+        $email = $post['email'];
+    }
+    if (isset($_POST['accountType'])) {
+        $acctype = $post['accountType'];
+    }
+    */
+    
 	$username = $post['username'];
 	$password = $post['password'];
 	$fname = $post['fname'];
@@ -32,7 +56,7 @@ $app2->post("/signUpAction", function(Request $request, Response $response){
     $schoolId = $post['sid'];
     $email = $post['email'];
     $acctype = $post['accountType'];
-
+   
 
 	// print "Name: $name, Price:$price, Country: $countryId";
 	$res = createUser($username, $password, $fname, $lname, $schoolId, $acctype, $email);
