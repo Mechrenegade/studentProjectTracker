@@ -11,7 +11,9 @@
     <!-- Bootstrap core CSS -->
     <!-- Bootstrap core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
 
     <!-- Custom styles for this template -->
     <link href="../css/signin.css" rel="stylesheet">
@@ -38,12 +40,13 @@
     <!-- Bootstrap core CSS -->
     <!-- Bootstrap core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 
     <!-- Custom styles for this template -->
     <link href="../css/signin.css" rel="stylesheet">
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="../js/ie10-viewport-bug-workaround.js"></script>
+<script src="../js/chart.js"></script>
 <script src="../bower_components/jquery/dist/jquery.js"></script>
 
 </head>
@@ -51,14 +54,31 @@
 <body>
 
 <div class="container">
-
-    <nav class="navbar navbar-inverse">
-        <li><a href="../profile.php">Add your own Project</a></li>
-        <li><a href="popProj.phtml">Most Popular Projects</a></li>
-        <li><a href="pendAcc.phtml">See Pending Accounts</a></li>
-        <li><a href="update.phtml">Update your info</a></li>
-    </nav>
-   
+    
+    <div class="container">
+        <div class="fb-profile">
+            <img align="left" class="fb-image-lg" src="http://lorempixel.com/850/280/nightlife/5/" alt="Profile image example"/>
+            <img align="left" class="fb-image-profile thumbnail" src="http://lorempixel.com/180/180/people/9/" alt="Profile image example"/>
+            <div class="fb-profile-text">
+                <h1>Eli Macy</h1>
+                <p>Girls just wanna go fun.</p>
+            </div>
+        </div>
+    </div> 
+    <div>
+        <br>
+    </div>
+    <ul class="nav nav-pills" role="tablist">
+        <li role="presentation" class="active"><a href="../index.php">Home<span class="badge"></span></a></li>
+        <li role="presentation"><a href="../profile.php">Add your own Project</a></li>
+        <li role="presentation"><a href="pendAcc.phtml">Pending Accounts<span class="badge">0</span></a></li>
+        <li role="presentation"><a href="update.phtml">Update your Info<span class="badge"></span></a></li>
+    </ul>
+    <div>
+            <br>
+            <br>
+    </div>
+    <div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
 </div> <!-- /container -->
 
 </body>

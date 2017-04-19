@@ -44,6 +44,7 @@ $app2->post("/signUpAction", function(Request $request, Response $response){
 	} else {
 		$response = $response->withStatus(400);
 	}
+    header("Location: http://localhost/project/");
 	return $response;
 });
 

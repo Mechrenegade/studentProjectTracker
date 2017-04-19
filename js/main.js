@@ -22,13 +22,11 @@ function createTable(records){
     var key;
     var sec_id = "#table_sec";
     var htmlStr = $("#table_heading").html(); //Includes all the table, thead and tbody declarations
-    console.log("hey3");
 
     records.forEach(function(el){
         htmlStr += "<tr> <td>" + el['id'] + "</td>" + "<td>" + el['projname'] + "</td>"+"<td>"+ el['coursecode'] +"</td> <td>"+ el['coursename'] +"</td> <td>"+ el['githublink'] +"</td> </tr>"+ el['year'] +"</td> <td>"+ el['file'] +"</td> </tr>"+ el['members'] +"</td> </tr>";
     });
-    console.log("hey4");
-
+    
     htmlStr += "</tbody></table>";
     $(sec_id).html(htmlStr);
 }
