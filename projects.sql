@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 07, 2017 at 05:36 AM
+-- Generation Time: Apr 19, 2017 at 04:48 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -56,6 +56,10 @@ CREATE TABLE `user` (
   `id` int(11) NOT NULL,
   `username` varchar(200) NOT NULL,
   `password` varchar(200) CHARACTER SET armscii8 COLLATE armscii8_bin NOT NULL,
+  `firstname` varchar(200) NOT NULL,
+  `lastname` varchar(200) NOT NULL,
+  `Email` varchar(200) NOT NULL,
+  `schoolIdnum` int(15) NOT NULL,
   `accounttype` varchar(200) NOT NULL,
   `approval` varchar(5) NOT NULL DEFAULT 'No',
   `datecreated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -65,11 +69,13 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `username`, `password`, `accounttype`, `approval`, `datecreated`) VALUES
-(1, 'stacy', '4ff18f00176f0f2b3ae5477d5c64490c7a748808', 'Student', 'No', '2017-03-31 00:31:53'),
-(2, 'aaron', 'e1952705cc0e6ec262d611301793720f7bfe5669', 'Student', 'No', '2017-04-06 16:50:20'),
-(3, 'rebecca', '2cec08d12876881ed7328cc7fdde856d6e91d0be', 'Student', 'No', '2017-04-06 16:50:20'),
-(4, 'listra', 'b1ec0f56f225344da9c5d8130e1bd1cfc83f7013', 'Student', 'No', '2017-04-06 16:50:46');
+INSERT INTO `user` (`id`, `username`, `password`, `firstname`, `lastname`, `Email`, `schoolIdnum`, `accounttype`, `approval`, `datecreated`) VALUES
+(1, 'stacy', '4ff18f00176f0f2b3ae5477d5c64490c7a748808', '', '0', '', 0, 'Student', 'No', '2017-03-31 00:31:53'),
+(2, 'aaron', 'e1952705cc0e6ec262d611301793720f7bfe5669', '', '0', '', 0, 'Student', 'No', '2017-04-06 16:50:20'),
+(3, 'rebecca', '2cec08d12876881ed7328cc7fdde856d6e91d0be', '', '0', '', 0, 'Student', 'No', '2017-04-06 16:50:20'),
+(4, 'listra', 'b1ec0f56f225344da9c5d8130e1bd1cfc83f7013', '', '0', '', 0, 'Student', 'No', '2017-04-06 16:50:46'),
+(14, 'sumaharaj', 'stacy', 'Stacy', 'Kallideen', 'stacysmaharaj@gmail.com', 5733238, 'Student', 'No', '2017-04-18 02:24:16'),
+(15, 'mmaharaj', 'marc', 'Marc', 'Maharaj', 'marc@gmail.com', 9008678, 'Student', 'No', '2017-04-19 05:23:15');
 
 --
 -- Indexes for dumped tables
@@ -100,7 +106,7 @@ ALTER TABLE `project`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
