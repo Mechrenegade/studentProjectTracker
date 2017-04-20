@@ -15,42 +15,66 @@
 
     <!-- Custom styles for this template -->
     <link href="css/signin.css" rel="stylesheet">
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script src="js/ie10-viewport-bug-workaround.js"></script>
-<script src="bower_components/jquery/dist/jquery.js"></script>
-<script src="js/main.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="js/ie10-viewport-bug-workaround.js"></script>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="js/main.js"></script>
 </head>
 
 <body>
 
-<div class="container">
+    
+         <nav class="navbar navbar-default navbar-fixed-top">
+				<div class="col-md-5 col-md-offset-5">					
+					
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+						<ul class="nav navbar-nav navbar-right">
+							<li class="hidden">
+								<a href="#page-top"></a>
+							</li>
+							<li class="page-scroll">
+								<a href="index.php">Home</a>
+							</li>
+							<li class="page-scroll">
+								<a href="templates/stuProfile.phtml">Profile</a>
+							</li>
+							<li class="page-scroll">
+								<a href="templates/signin.phtml">Sign In</a>
+							</li>
+																										
+						</ul>
+					</div>
+					
+				</div>
+          </nav>      
+	<div class="container">			
 
-    <form class="form-signin" method="POST" action="signup.php/signUpAction">
-        <h2 class="form-signin-heading">Sign Up</h2>
-        <label for="username" class="sr-only">Username</label>
-        <input type="text" id="username" name ="username" class="form-control" placeholder="username" required autofocus>
-        <label for="password" class="sr-only">Password</label>
-        <input type="password" id="password" name ="password" class="form-control" placeholder="Password" required autofocus>
-        <label for="fname" class="sr-only">First Name</label>
-        <input type="text" id="fname" name ="fname"class="form-control" placeholder="First Name" required autofocus>    
-        <label for="lname" class="sr-only">Last Name</label>
-        <input type="text" id="lname" name="lname"class="form-control" placeholder="Last Name" required autofocus>
-        <label for="sid" class="sr-only">School Id Number</label>
-        <input type="number_format" id="sid" name="sid" class="form-control" placeholder="School Id Number" required autofocus>
-        <label for="email" class="sr-only">Email Address</label>
-        <input type="email" id="email" name="email" class="form-control" placeholder="Email" required autofocus>
-        <label for="input-accountType" class="sr-only">Account Type</label>
-        <select id="accountType" name="accountType" class="form-control">
-							<option value="0">Choose Account Type</option>
-                            <option value="Student">Student</option>
-                            <option value="Admin">Administrator</option>
-		</select>
-        <input class="btn btn-lg btn-primary btn-block" type="submit" id="signupBtn" value="Sign Up">
-        <a class="btn btn-lg btn-primary btn-block" href="../index.php">Login</a>
-    </form>
+        <form class="form-signin" method="POST" action="signup.php/signUpAction">
+            <h2 class="form-signin-heading">Sign Up</h2>
+            <label for="username" class="sr-only">Username</label>
+            <input type="text" id="username" name ="username" class="form-control" placeholder="username" required autofocus>
+            <label for="password" class="sr-only">Password</label>
+            <input type="password" id="password" name ="password" class="form-control" placeholder="Password" required autofocus>
+            <label for="fname" class="sr-only">First Name</label>
+            <input type="text" id="fname" name ="fname"class="form-control" placeholder="First Name" required autofocus>    
+            <label for="lname" class="sr-only">Last Name</label>
+            <input type="text" id="lname" name="lname"class="form-control" placeholder="Last Name" required autofocus>
+            <label for="sid" class="sr-only">School Id Number</label>
+            <input type="number_format" id="sid" name="sid" class="form-control" placeholder="School Id Number" required autofocus>
+            <label for="email" class="sr-only">Email Address</label>
+            <input type="email" id="email" name="email" class="form-control" placeholder="Email" required autofocus>
+            <label for="input-accountType" class="sr-only">Account Type</label>
+            <select id="accountType" name="accountType" class="form-control">
+                                <option value="0">Choose Account Type</option>
+                                <option value="Student">Student</option>
+                                <option value="Admin">Administrator</option>
+            </select>
+            <input class="btn btn-lg btn-primary btn-block" type="submit" id="signupBtn" value="Sign Up">
+            <a class="btn btn-lg btn-primary btn-block" href="index.php">Login</a>
+        </form>
 
     <div id="resp"></div>
-</div> <!-- /container -->
+    </div> <!-- /container -->
 
 </body>
 </html>
