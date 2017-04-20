@@ -25,18 +25,18 @@ $app3->get('/', function (Request $request, Response $response) {
 
 $app3->post("/addAction", function(Request $request, Response $response){
 	$post = $request->getParsedBody();
-
-	$username = $post['username'];
-	$password = $post['password'];
-	$fname = $post['fname'];
-    $lname = $post['lname'];
-    $schoolId = $post['sid'];
-    $email = $post['email'];
-    $acctype = $post['accountType'];
+	
+	echo("<script>console.log('PHP: ".$post."');</script>");
+	
+	$name = $post['name'];
+	$cname = $post['cname'];
+	$ccode = $post['ccode'];
+    $ghlink = $post['ghlink'];
+    $year = $post['year'];
    
 
 	// print "Name: $name, Price:$price, Country: $countryId";
-	$res = createUser($username, $password, $fname, $lname, $schoolId, $acctype, $email);
+	$res = createProject($name, $cname, $ccode, $ghlink, $year);
 	// print ($res);
 	if ($res > 0){
 		$response = $response->withStatus(201);

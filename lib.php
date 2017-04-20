@@ -54,6 +54,24 @@ function createUser($username, $password, $firstname, $lastname, $schoolId, $acc
 	return $id;
 }
 
+function createProject($projname, $coursename, $coursecode, $gitlink, $year){
+	$sql = "INSERT INTO `project` (`id`, `projname`, `coursename`, `coursecode`, `githublink`, `year`, `file`, `members`)
+			VALUES (NULL, '$projname', '$coursename', '$coursecode', '$gitlink', '$year', '/useruploads/hive.zip', 'Member1 Member2')";
+	
+	print $sql;
+	
+	$db = getDBConnection();
+	$id = -1;
+	if ($db != null){
+		$res = $db->query($sql);
+		if ($res && $db->insert_id > 0){
+			$id = $db->insert_id;
+		}
+		$db->close();
+	}
+	return $id;
+}
+
 
 
 
