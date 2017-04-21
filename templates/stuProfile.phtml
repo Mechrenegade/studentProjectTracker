@@ -14,11 +14,19 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
 
     <!-- Custom styles for this template -->
     <link href="../css/signin.css" rel="stylesheet">
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="../js/ie10-viewport-bug-workaround.js"></script>
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
+    <link href="../css/signin.css" rel="stylesheet">
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../js/ie10-viewport-bug-workaround.js"></script>
+    <script src="../js/chart.js"></script>
     <script src="../bower_components/jquery/dist/jquery.js"></script>
     
     </head>
@@ -27,31 +35,32 @@
 
 <div class="container">
 
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Profile</title>
-
-    <!-- Bootstrap core CSS -->
-    <!-- Bootstrap core CSS -->
-    <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-
-    <!-- Custom styles for this template -->
-    <link href="../css/signin.css" rel="stylesheet">
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script src="../js/ie10-viewport-bug-workaround.js"></script>
-<script src="../js/chart.js"></script>
-<script src="../bower_components/jquery/dist/jquery.js"></script>
-
-</head>
+   
 
 <body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+ 				<div class="col-md-5 col-md-offset-5">					
+ 					
+ 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+ 						<ul class="nav navbar-nav navbar-right">
+ 							<li class="hidden">
+ 								<a href="#page-top"></a>
+ 							</li>
+ 							<li class="page-scroll">
+ 								<a href="index.php">Home</a>
+ 							</li>
+ 							<li class="page-scroll">
+ 								<a href="templates/stuProfile.phtml">Profile</a>
+ 							</li>
+ 							<li class="page-scroll">
+ 								<a href="templates/signin.phtml">Sign In</a>
+ 							</li>
+ 																										
+ 						</ul>
+ 					</div>
+ 					
+ 				</div>
+    </nav>
 
 <div class="container">
     
@@ -73,7 +82,7 @@
         <li role="presentation"><a href="../profile.php">Add your own Project</a></li>
         <li role="presentation"><a href="pendAcc.phtml">Pending Accounts<span class="badge">0</span></a></li>
         <li role="presentation"><a href="update.phtml">Update your Info</a></li>
-        <li role="presentation"><a href="update.phtml">View and Download Projects</a></li>
+        <li role="presentation"><a href="vDownload.phtml">View and Download Projects</a></li>
         <li role="presentation"><a href="compare.phtml">Compare Code</a></li>
     </ul>
     <div>
