@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang='en'>
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml; charset=utf-8" />
+<title>Online Code Difference Comparison Tool</title>
+<meta name="description" content="Online Code Difference Comparison Tool allows you to paste two pieces of code or text and view the changes between the two." />
+
+<script type="text/javascript" src="../js/dojo.js"></script>
+<script type="text/javascript" src="../js/diffview.js"></script>
+<link rel="stylesheet" type="text/css" href="diffview.css"/>
+<script type="text/javascript" src="../js/difflib.js"></script>
+
+
+<script language="javascript">
+
+var $=dojo.byId;dojo.require("dojo.io");var url=window.location.toString().split("#")[0];function diffUsingJS(){var base=difflib.stringAsLines($("baseText").value);var newtxt=difflib.stringAsLines($("newText").value);var sm=new difflib.SequenceMatcher(base,newtxt);var opcodes=sm.get_opcodes();var diffoutputdiv=$("diffoutput");while(diffoutputdiv.firstChild)diffoutputdiv.removeChild(diffoutputdiv.firstChild);var contextSize=$("contextSize").value;contextSize=contextSize?contextSize:null;diffoutputdiv.appendChild(diffview.buildView({baseTextLines:base,newTextLines:newtxt,opcodes:opcodes,baseTextName:"Base Text",newTextName:"New Text",contextSize:contextSize,viewType:$("inline").checked?1:0}));window.location=url+"#diff";}function diffUsingPython(){dojo.io.bind({url:"/diff/postYieldDiffData",method:"POST",content:{baseText:$("baseText").value,newText:$("newText").value,ignoreWhitespace:"Y"},load:function(type,data,evt){try{data=eval('('+data+')');while(diffoutputdiv.firstChild)diffoutputdiv.removeChild(diffoutputdiv.firstChild);$("output").appendChild(diffview.buildView({baseTextLines:data.baseTextLines,newTextLines:data.newTextLines,opcodes:data.opcodes,baseTextName:data.baseTextName,newTextName:data.newTextName,contextSize:contextSize}));}catch(ex){alert("An error occurred updating the diff view:\n"+ex.toString());}},error:function(type,evt){alert('Error occurred getting diff data.  Check the server logs.');},type:'text/javascript'});}
+</script>
+</head>
+<body>
+	<h1>Code Difference Comparison Tool</h1>
+
+	<input type="text" id="contextSize" value=""></input><br/>
+	<strong>Diff View Type:</strong>
+	<input type="radio" name="_viewtype" checked="checked" id="sidebyside"/> Side by Side
+	&#160;&#160;
+	<input type="radio" name="_viewtype" id="inline"/> Inline
+	<h2>Master Text</h2>
+	<textarea id="baseText" style="width:600px;height:300px"></textarea>
+
+	<h2>Second Text</h2>
+	<textarea id="newText" style="width:600px;height:300px"></textarea><br/>
+	<input type="button" value="Submit" onclick="javascript:diffUsingJS();"/><br/><br/>
+	<a name="diff"> </a>
+	<div id="diffoutput" style="width:100%"> </div>
+</body>
+</html>
