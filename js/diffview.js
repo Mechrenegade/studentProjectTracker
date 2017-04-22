@@ -1,4 +1,5 @@
-diffview={buildView:function(params){var baseTextLines=params.baseTextLines;
+diffview={buildView:function(params){
+    var baseTextLines=params.baseTextLines;
     var newTextLines=params.newTextLines;
     var opcodes=params.opcodes;
     var baseTextName=params.baseTextName?params.baseTextName:"Base Text";

@@ -5,25 +5,75 @@
 <title>Online Code Difference Comparison Tool</title>
 <meta name="description" content="Online Code Difference Comparison Tool allows you to paste two pieces of code or text and view the changes between the two." />
 
-<script type="text/javascript" src="../js/dojo.js"></script>
-<script type="text/javascript" src="../js/diffview.js"></script>
-<link rel="stylesheet" type="text/css" href="diffview.css"/>
-<script type="text/javascript" src="../js/difflib.js"></script>
+	<script type="text/javascript" src="../js/dojo.js"></script>
+	<script type="text/javascript" src="../js/diffview.js"></script>
+	<link rel="stylesheet" type="text/css" href="diffview.css"/>
+	<script type="text/javascript" src="../js/difflib.js"></script>
 
+	<link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="../js/result.js"></script>
+    <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 
-<script language="javascript">
-
-var $=dojo.byId;dojo.require("dojo.io");var url=window.location.toString().split("#")[0];function diffUsingJS(){var base=difflib.stringAsLines($("baseText").value);var newtxt=difflib.stringAsLines($("newText").value);var sm=new difflib.SequenceMatcher(base,newtxt);var opcodes=sm.get_opcodes();var diffoutputdiv=$("diffoutput");while(diffoutputdiv.firstChild)diffoutputdiv.removeChild(diffoutputdiv.firstChild);var contextSize=$("contextSize").value;contextSize=contextSize?contextSize:null;diffoutputdiv.appendChild(diffview.buildView({baseTextLines:base,newTextLines:newtxt,opcodes:opcodes,baseTextName:"Base Text",newTextName:"New Text",contextSize:contextSize,viewType:$("inline").checked?1:0}));window.location=url+"#diff";}function diffUsingPython(){dojo.io.bind({url:"/diff/postYieldDiffData",method:"POST",content:{baseText:$("baseText").value,newText:$("newText").value,ignoreWhitespace:"Y"},load:function(type,data,evt){try{data=eval('('+data+')');while(diffoutputdiv.firstChild)diffoutputdiv.removeChild(diffoutputdiv.firstChild);$("output").appendChild(diffview.buildView({baseTextLines:data.baseTextLines,newTextLines:data.newTextLines,opcodes:data.opcodes,baseTextName:data.baseTextName,newTextName:data.newTextName,contextSize:contextSize}));}catch(ex){alert("An error occurred updating the diff view:\n"+ex.toString());}},error:function(type,evt){alert('Error occurred getting diff data.  Check the server logs.');},type:'text/javascript'});}
-</script>
 </head>
 <body>
+	
+	<nav class="navbar navbar-default navbar-fixed-top">
+ 				<div class="col-md-5 col-md-offset-5">					
+ 					
+ 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+ 						<ul class="nav navbar-nav navbar-right">
+ 							<li class="hidden">
+ 								<a href="#page-top"></a>
+ 							</li>
+ 							<li class="page-scroll">
+ 								<a href="../index.php">Home</a>
+ 							</li>
+ 							<li class="page-scroll">
+ 								<a href="signup.phtml">Sign Up</a>
+ 							</li>
+ 							<li class="page-scroll">
+ 								<a href="templates/signin.phtml">Sign In</a>
+ 							</li>
+ 																										
+ 						</ul>
+ 					</div>
+ 					
+ 				</div>
+    </nav>
+	<br>
+	<br>
+	<div class="container">
+		
+		<div class="container">
+			<div class="fb-profile">
+				<img align="left" class="fb-image-lg" src="http://northbaynow.ca/wp-content/uploads/2016/05/tech.jpg" alt="Profile image example"/>
+				<img align="left" class="fb-image-profile thumbnail" src="../src/propics/blank.jpg" alt="Profile image example" height="180" width="180"/>
+				<div class="fb-profile-text">
+					<h1>Eli Macy</h1>
+					<p>Girls just wanna go fun.</p>
+				</div>
+			</div>
+		</div> 
+		<div>
+			<br>
+		</div>
+    <ul class="nav nav-pills" role="tablist">
+        <li role="presentation"><a href="stuProfile.phtml">Home</a></li>
+        <li role="presentation"><a href="../profile.php">Add your own Project</a></li>
+        <li role="presentation"><a href="pendAcc.phtml">Pending Accounts<span class="badge">0</span></a></li>
+        <li role="presentation"><a href="change.phtml">Update your Info</a></li>
+        <li role="presentation"><a href="vDownload.phtml">View and Download Projects</a></li>
+        <li role="presentation" class="active"><a href="compare.phtml">Compare Code</a></li>
+    </ul>
 	<h1>Enter your code in the text boxes below to compare</h1>
 
-	<input type="text" id="contextSize" value=""></input><br/>
-	<strong>Diff View Type:</strong>
-	<input type="radio" name="_viewtype" checked="checked" id="sidebyside"/> Side by Side
+	<input type="hidden" id="contextSize" value=""></input><br/>
+	<!--<input type="radio" name="_viewtype" id="sidebyside"/> Side by Side
+	&#160;&#160;-->
+	<input type="hidden" name="_viewtype" checked="checked" id="inline"/>
 	&#160;&#160;
-	<input type="radio" name="_viewtype" id="inline"/> Inline
 	<h2>First Text</h2>
 	<textarea id="baseText" style="width:600px;height:300px"></textarea>
 
@@ -32,5 +82,7 @@ var $=dojo.byId;dojo.require("dojo.io");var url=window.location.toString().split
 	<input type="button" value="Submit" onclick="javascript:diffUsingJS();"/><br/><br/>
 	<a name="diff"> </a>
 	<div id="diffoutput" style="width:100%"> </div>
+    
+</div> <!-- /container -->
 </body>
 </html>

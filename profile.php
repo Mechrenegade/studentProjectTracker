@@ -25,7 +25,7 @@ $app3->get('/', function (Request $request, Response $response) {
 
 $app3->post("/addAction", function(Request $request, Response $response){
 	$post = $request->getParsedBody();
-	
+	upload();
 	echo("<script>console.log('PHP: ".$post."');</script>");
 	
 	$name = $post['name'];
