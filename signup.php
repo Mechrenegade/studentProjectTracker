@@ -24,6 +24,7 @@ $app2->get('/', function (Request $request, Response $response) {
 });
 
 $app2->post("/signUpAction", function(Request $request, Response $response){
+
 	$post = $request->getParsedBody();
 
 	$username = $post['username'];
@@ -40,6 +41,7 @@ $app2->post("/signUpAction", function(Request $request, Response $response){
 	// print ($res);
 	if ($res > 0){
 		$response = $response->withStatus(201);
+		header("Location:http://localhost:8080/project/");
 		$response = $response->withJson(array( "id" => $res));
 	} else {
 		$response = $response->withStatus(400);

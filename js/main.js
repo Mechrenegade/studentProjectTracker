@@ -8,13 +8,20 @@ $(document).ready(function(){
 
 
 function retrieveProjects(){
+
     $.get("index.php/projects", processAllProjects, "json");
+    
+}
+
+function retrieveProjects2(){
+
+    $.get("download.php/viewDld", processAllProjects, "json");
     
 }
 
 function processAllProjects(records){
     console.log(records);
-    createTable(records);
+    createTable2(records);
    
 }
 
@@ -24,26 +31,36 @@ function createTable(records){
     var htmlStr = $("#table_heading").html(); //Includes all the table, thead and tbody declarations
 
     records.forEach(function(el){
-        htmlStr += "<tr> <td>" + el['id'] + "</td>" + "<td>" + el['projname'] + "</td>"+"<td>"+ el['coursecode'] +"</td> <td>"+ el['coursename'] +"</td> <td>"+ el['githublink'] +"</td> </tr>"+ el['year'] +"</td> <td>"+ el['file'] +"</td> </tr>"+ el['members'] +"</td> </tr>";
+        htmlStr += "<tr> <td>" + el['id'] + "</td>" + "<td>" + el['projname'] + "</td>"+"<td>"+ el['coursecode'] +"</td> <td>"+ el['coursename'] +"</td> <td>"+ el['githublink'] +"</td>"+ "<td>"+ el['year'] +"</td> <td>"+ el['file'] +"</td> </tr>"+ el['members'] +"</td> </tr>";
     });
     
     htmlStr += "</tbody></table>";
     $(sec_id).html(htmlStr);
 }
-/*
-function createTable(records){
+
+function createTable2(records){
     var key;
     var sec_id = "#table_sec";
     var htmlStr = $("#table_heading").html(); //Includes all the table, thead and tbody declarations
 
-    records.forEach(function(el){
-        htmlStr += "<tr> <td>" + el['name'] + "</td>" + "<td>" + el['price'] + "</td>"+"<td>"+ el['country'] +"</td> <tr>" ;
+   records.forEach(function(el){
+        htmlStr += "<tr> <td>" 
+                    //+el['id'] +"</td>" 
+                    //+"<td>"
+                    + el['projname'] + "</td>"
+                    +"<td>"+ el['coursecode'] +"</td>"
+                    +"<td>"+ el['coursename'] +"</td>"
+                    +"<td>"+ el['coursename'] +"</td>"
+                    +"<td>"+ el['githublink'] +"</td>"
+                    +"<td>"+ el['year'] +"</td>"
+                    +"<td>"+ el['file'] +"</td>"
+                    +"<td>"+ el['members'] +"</td> </tr>" ;
     });
     
     htmlStr += "</tbody></table>";
     $(sec_id).html(htmlStr);
-} */
-console.log("JavaScript file was successfully loaded in the page");
+}
+
 
 $(function() {
     
@@ -59,5 +76,9 @@ $(function() {
       }
     }
   });
+
+
   
 });
+
+console.log("JavaScript file was successfully loaded in the page");

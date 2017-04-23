@@ -10,24 +10,24 @@
 
   
     <!-- Bootstrap core CSS -->
-    <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
-    <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 
 
     
-    <link href="../css/signin.css" rel="stylesheet">
+    <link href="css/signin.css" rel="stylesheet">
     
-    <script src="../js/ie10-viewport-bug-workaround.js"></script>
-    <script src="../bower_components/jquery/dist/jquery.js"></script>
-    <link href="../css/signin.css" rel="stylesheet">
+    <script src="js/ie10-viewport-bug-workaround.js"></script>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <link href="css/signin.css" rel="stylesheet">
     
-    <script src="../js/ie10-viewport-bug-workaround.js"></script>
-    <script src="../js/chart.js"></script>
-    <script src="../bower_components/jquery/dist/jquery.js"></script>
+    <script src="js/ie10-viewport-bug-workaround.js"></script>
+    <script src="js/chart.js"></script>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
     
     </head>
 
@@ -67,7 +67,7 @@
     <div class="container">
         <div class="fb-profile">
             <img align="left" class="fb-image-lg" src="http://northbaynow.ca/wp-content/uploads/2016/05/tech.jpg" alt="Profile image example"/>
-            <img align="left" class="fb-image-profile thumbnail" src="../src/propics/blank.jpg" alt="Profile image example" height="180" width="180"/>
+            <img align="left" class="fb-image-profile thumbnail" src="src/propics/blank.jpg" alt="Profile image example" height="180" width="180"/>
             <div class="fb-profile-text">
                 <h1>Eli Macy</h1>
                 <p>Girls just wanna go fun.</p>
@@ -77,20 +77,57 @@
     <div>
         <br>
     </div>
-    <ul class="nav nav-pills" role="tablist">
-        <li role="presentation"><a href="stuProfile.phtml">Home</a></li>
-        <li role="presentation"><a href="../profile.php">Add your own Project</a></li>
-        <li role="presentation"  class="active"><a href="pendAcc.phtml">Pending Accounts<span class="badge">0</span></a></li>
-        <li role="presentation"><a href="change.phtml">Update your Info</a></li>
-        <li role="presentation"><a href="vDownload.phtml">View and Download Projects</a></li>
-        <li role="presentation"><a href="compare.phtml">Compare Code</a></li>
-    </ul>
+        <ul class="nav nav-pills" role="tablist">
+            <li role="presentation"><a href="templates/stuProfile.phtml">Home</a></li>
+            <li role="presentation"><a href="profile.php">Add your own Project</a></li>
+            <li role="presentation"  class="active"><a href="pending.php">Pending Accounts<span class="badge"><?php echo "0"; ?></span></a></li>
+            <li role="presentation"><a href="templates/change.phtml">Update your Info</a></li>
+            <li role="presentation"><a href="download.php">View and Download Projects</a></li>
+            <li role="presentation"><a href="templates/compare.phtml">Compare Code</a></li>
+        </ul>
     <div>
             <br>
             <br>
     </div>
     
 </div> <!-- /container -->
+<table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Project ID</th>
+                    <th>Project Name</th>
+                    <th>Course Code</th>
+                    <th>Course Name</th>
+                    <th>GitHub Link</th>
+                    <th>Year</th>
+                    <th>Project File</th>
+                    <th>Group Members</th>
+                </tr>
+            </thead>
+            <tbody>
+    <?php
+                                                
+        $conn = getDBConnection();
+        $sql = "SELECT * FROM `project`";
+        $res = $conn->query($sql);
+        if ($res){
+            $row = $res->fetch_assoc();
+            while ($row != null){
+                // print the rows of the table
+                echo "<tr>";
+                echo "<td>" . $row['id'] . "</td>";
+                echo "<td>" . $row['projname'] . "</td>";
+                echo "<td>" . $row['coursecode'] . "</td>";
+                echo "<td>" . $row['coursename'] . "</td>";
+                echo "<td>" . $row['githublink'] . "</td>";
+                echo "<td>" . $row['year'] . "</td>";
+                echo "<td>" . $row['file'] . "</td>";
+                echo "<td>" . $row['members'] . "</td>";
+                echo "</tr>";
+                $row = $res->fetch_assoc();
+            }
+        }
+    ?>
 
 </body>
 </html>
