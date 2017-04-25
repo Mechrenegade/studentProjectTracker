@@ -6,14 +6,12 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Profile</title>
+    <title>Update</title>
 
     <!-- Bootstrap core CSS -->
     <!-- Bootstrap core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 
@@ -26,7 +24,6 @@
     <link href="../css/signin.css" rel="stylesheet">
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="../js/ie10-viewport-bug-workaround.js"></script>
-    <script src="../js/chart.js"></script>
     <script src="../bower_components/jquery/dist/jquery.js"></script>
     
     </head>
@@ -34,8 +31,7 @@
 <body>
 
 <div class="container">
-
-   
+ 
 
 <body>
     <nav class="navbar navbar-default navbar-fixed-top">
@@ -46,22 +42,17 @@
  							<li class="hidden">
  								<a href="#page-top"></a>
  							</li>
- 							<li class="page-scroll">
- 								<a href="../index.php">Home</a>
- 							</li>
- 							<li class="page-scroll">
- 								<a href="templates/stuProfile.phtml">Profile</a>
- 							</li>
- 							<li class="page-scroll">
- 								<a href="templates/signin.phtml">Sign In</a>
- 							</li>
+                             <li class="page-scroll">
+ 								<a href="../profile.php/logout">Log Out</a>
+ 							</li>		
  																										
  						</ul>
  					</div>
  					
  				</div>
     </nav>
-
+<br>
+	<br>
 <div class="container">
     
     <div class="container">
@@ -69,8 +60,7 @@
             <img align="left" class="fb-image-lg" src="http://northbaynow.ca/wp-content/uploads/2016/05/tech.jpg" alt="Profile image example"/>
             <img align="left" class="fb-image-profile thumbnail" src="../src/propics/blank.jpg" alt="Profile image example" height="180" width="180"/>
             <div class="fb-profile-text">
-                <h1>Eli Macy</h1>
-                <p>Girls just wanna go fun.</p>
+                
             </div>
         </div>
     </div> 
@@ -78,17 +68,65 @@
         <br>
     </div>
     <ul class="nav nav-pills" role="tablist">
-        <li role="presentation"><a href="stuProfile.phtml">Home</a></li>
-        <li role="presentation"><a href="../profile.php">Add your own Project</a></li>
-        <li role="presentation"><a href="../pending.php">Pending Accounts<span class="badge">0</span></a></li>
-        <li role="presentation" class="active"><a href="update.phtml">Update your Info</a></li>
-        <li role="presentation"><a href="../download.php">View and Download Projects</a></li>
-        <li role="presentation"><a href="compare.phtml">Compare Code</a></li>
+        <?php
+        	echo '<li role="presentation"><a href="../profile.php/home">Home</a></li>';
+		
+			if($_SESSION['userData']['approval'] == 'Yes'){
+				echo '<li role="presentation"><a href="../profile.php/addproj">Add your own Project</a></li>';
+			}
+		
+            if($_SESSION['userData']['accounttype'] == 'Admin'){
+                echo '<li role="presentation"><a href="../profile.php/pending">Pending Accounts<span class="badge">';
+                
+                $count = 0;
+                $count = countPending();
+                echo $count;
+                echo '</span></a></li>';
+            }
+        
+        	echo '<li role="presentation" class="active"><a href="../profile.php/change">Update your Info</a></li>';
+		
+			if($_SESSION['userData']['approval'] == 'Yes'){
+
+				echo '<li role="presentation"><a href="../profile.php/download">View and Download Projects</a></li>';
+			}
+
+		
+        	echo '<li role="presentation"><a href="../profile.php/compare">Compare Code</a></li>';
+		?>
     </ul>
     <div>
             <br>
             <br>
     </div>
+    <form class="form-horizontal" method="POST" action="../profile.php/updateAction" enctype="multipart/form-data">
+				<fieldset>	
+					<!-- Text input-->
+					<div class="form-group">
+						<div class="col-md-4">
+							<input id="id" name="id" type="hidden" placeholder="" value=<?php echo '"'.$_SESSION['userData']['id'].'"'?> class="form-control input-md" required="">
+						
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="uploadpic">Upload A Profile Picture</label>
+						<div class="col-md-4">
+							<input id="uploadpic" name="uploadpic" type="file" class="form-control input-md" required=""> 
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="upBnt"></label>
+						<div class="col-md-4">
+							<button id="upBnt" name="upBnt" class="btn btn-primary">Save Changes</button>
+						</div>
+					</div>
+				
+				</fieldset>
+			</form>
+
+
    
 </div> <!-- /container -->
 

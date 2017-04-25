@@ -48,6 +48,61 @@ $app->post("/projects", function(Request $request, Response $response){
 	return $response;
 });
 
+$app->get('/signup', function (Request $request, Response $response) {
+    return $this->renderer->render($response, "/signup.phtml");
+});
+
+$app->post("/signUpAction", function(Request $request, Response $response){
+
+	$post = $request->getParsedBody();
+
+	$username = $post['username'];
+	$password = $post['password'];
+	$password = sha1($password);
+	$fname = $post['fname'];
+    $lname = $post['lname'];
+    $schoolId = $post['sid'];
+    $email = $post['email'];
+    $acctype = $post['accountType'];
+   
+
+	// print "Name: $name, Price:$price, Country: $countryId";
+	$res = createUser($username, $password, $fname, $lname, $schoolId, $acctype, $email);
+	// print ($res);
+	if ($res > 0){
+		return $response->withRedirect('/project/index.php');
+		//$response = $response->withStatus(201);
+		//header("Location:http://localhost:8080/project/");
+		//$response = $response->withJson(array( "id" => $res));
+	} else {
+		$response = $response->withStatus(400);
+	}
+    //header("Location: http://localhost/project/");
+	return $response;
+});
+
+$app->get('/signin', function (Request $request, Response $response) {
+    return $this->renderer->render($response, "/signin.phtml");
+});
+
+$app->post("/loginAction", function(Request $request, Response $response){
+
+	$post = $request->getParsedBody();
+
+	echo loginUser($post['username'], $post['password']);
+	$res = 1;
+	// print "Name: $name, Price:$price, Country: $countryId";
+	if ($res > 0){
+		//$response = $response->withStatus(201);
+		//header("Location:http://localhost:8080/project/");
+		//$response = $response->withJson(array( "id" => $res));
+	} else {
+		$response = $response->withStatus(400);
+	}
+    //header("Location: http://localhost/project/");
+	return $response;
+});
+
 
 $app->run();
 ?>

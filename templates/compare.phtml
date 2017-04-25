@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang='en'>
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml; charset=utf-8" />
-<title>Online Code Difference Comparison Tool</title>
+<title>Compare</title>
 <meta name="description" content="Online Code Difference Comparison Tool allows you to paste two pieces of code or text and view the changes between the two." />
 
 	<script type="text/javascript" src="../js/dojo.js"></script>
 	<script type="text/javascript" src="../js/diffview.js"></script>
-	<link rel="stylesheet" type="text/css" href="diffview.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/diffview.css"/>
 	<script type="text/javascript" src="../js/difflib.js"></script>
 
 	<link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -27,21 +27,17 @@
  							<li class="hidden">
  								<a href="#page-top"></a>
  							</li>
- 							<li class="page-scroll">
- 								<a href="../index.php">Home</a>
+							 <li class="page-scroll">
+ 								<a href="../profile.php/logout">Log Out</a>
  							</li>
- 							<li class="page-scroll">
- 								<a href="signup.phtml">Sign Up</a>
- 							</li>
- 							<li class="page-scroll">
- 								<a href="templates/signin.phtml">Sign In</a>
- 							</li>
- 																										
+ 																											
  						</ul>
  					</div>
  					
  				</div>
     </nav>
+	<br>
+	<br>
 	<br>
 	<br>
 	<div class="container">
@@ -51,8 +47,7 @@
 				<img align="left" class="fb-image-lg" src="http://northbaynow.ca/wp-content/uploads/2016/05/tech.jpg" alt="Profile image example"/>
 				<img align="left" class="fb-image-profile thumbnail" src="../src/propics/blank.jpg" alt="Profile image example" height="180" width="180"/>
 				<div class="fb-profile-text">
-					<h1>Eli Macy</h1>
-					<p>Girls just wanna go fun.</p>
+					
 				</div>
 			</div>
 		</div> 
@@ -60,12 +55,32 @@
 			<br>
 		</div>
     <ul class="nav nav-pills" role="tablist">
-        <li role="presentation"><a href="stuProfile.phtml">Home</a></li>
-        <li role="presentation"><a href="../profile.php">Add your own Project</a></li>
-        <li role="presentation"><a href="../pending.php">Pending Accounts<span class="badge">0</span></a></li>
-        <li role="presentation"><a href="change.phtml">Update your Info</a></li>
-        <li role="presentation"><a href="../download.php">View and Download Projects</a></li>
-        <li role="presentation" class="active"><a href="compare.phtml">Compare Code</a></li>
+        <?php
+        	echo '<li role="presentation"><a href="../profile.php/home">Home</a></li>';
+		
+			if($_SESSION['userData']['approval'] == 'Yes'){
+				echo '<li role="presentation"><a href="../profile.php/addproj">Add your own Project</a></li>';
+			}
+		
+            if($_SESSION['userData']['accounttype'] == 'Admin'){
+                echo '<li role="presentation"><a href="../profile.php/pending">Pending Accounts<span class="badge">';
+                
+                $count = 0;
+                $count = countPending();
+                echo $count;
+                echo '</span></a></li>';
+            }
+        
+        	echo '<li role="presentation"><a href="../profile.php/change">Update your Info</a></li>';
+		
+			if($_SESSION['userData']['approval'] == 'Yes'){
+
+				echo '<li role="presentation"><a href="../profile.php/download">View and Download Projects</a></li>';
+			}
+
+		
+        	echo '<li role="presentation" class="active"><a href="../profile.php/compare">Compare Code</a></li>';
+		?>
     </ul>
 	<h1>Enter your code in the text boxes below to compare</h1>
 

@@ -10,15 +10,15 @@
 
     <!-- Bootstrap core CSS -->
     <!-- Bootstrap core CSS -->
-    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
 
     <!-- Custom styles for this template -->
-    <link href="css/signin.css" rel="stylesheet">
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script src="js/ie10-viewport-bug-workaround.js"></script>
-<script src="bower_components/jquery/dist/jquery.js"></script>
-<script src="js/main.js"></script>
+    <link href="../css/signin.css" rel="stylesheet">
+	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+	<script src="../js/ie10-viewport-bug-workaround.js"></script>
+	<script src="../bower_components/jquery/dist/jquery.js"></script>
+	<script src="../js/main.js"></script>
 </head>
 
 <body>
@@ -30,31 +30,25 @@
  							<li class="hidden">
  								<a href="#page-top"></a>
  							</li>
- 							<li class="page-scroll">
- 								<a href="index.php">Home</a>
+							<li class="page-scroll">
+ 								<a href="../profile.php/logout">Log Out</a>
  							</li>
- 							<li class="page-scroll">
- 								<a href="templates/stuProfile.phtml">Profile</a>
- 							</li>
- 							<li class="page-scroll">
- 								<a href="templates/signin.phtml">Sign In</a>
- 							</li>
- 																										
+ 																													
  						</ul>
  					</div>
  					
  				</div>
     </nav>
-
+	<br>
+	<br>
 	<div class="container">
 		
 		<div class="container">
 			<div class="fb-profile">
 				<img align="left" class="fb-image-lg" src="http://northbaynow.ca/wp-content/uploads/2016/05/tech.jpg" alt="Profile image example"/>
-				<img align="left" class="fb-image-profile thumbnail" src="src/propics/blank.jpg" alt="Profile image example" height="180" width="180"/>
+				<img align="left" class="fb-image-profile thumbnail" src="../src/propics/blank.jpg" alt="Profile image example" height="180" width="180"/>
 				<div class="fb-profile-text">
-					<h1>Eli Macy</h1>
-					<p>Girls just wanna go fun.</p>
+					
 				</div>
 			</div>
 		</div> 
@@ -62,33 +56,39 @@
 			<br>
 		</div>
     <ul class="nav nav-pills" role="tablist">
-        <li role="presentation"><a href="templates/stuProfile.phtml">Home</a></li>
-        <li role="presentation" class="active"><a href="profile.php">Add your own Project</a></li>
-        <li role="presentation"><a href="pending.php">Pending Accounts<span class="badge">0</span></a></li>
-        <li role="presentation"><a href="templates/change.phtml">Update your Info</a></li>
-        <li role="presentation"><a href="../download.php">View and Download Projects</a></li>
-        <li role="presentation"><a href="templates/compare.phtml">Compare Code</a></li>
+		<?php
+        	echo '<li role="presentation"><a href="../profile.php/home">Home</a></li>';
+		
+			if($_SESSION['userData']['approval'] == 'Yes'){
+				echo '<li role="presentation" class="active"><a href="../profile.php/addproj">Add your own Project</a></li>';
+			}
+		
+            if($_SESSION['userData']['accounttype'] == 'Admin'){
+                echo '<li role="presentation"><a href="../profile.php/pending">Pending Accounts<span class="badge">';
+                
+                $count = 0;
+                $count = countPending();
+                echo $count;
+                echo '</span></a></li>';
+            }
+        
+        	echo '<li role="presentation"><a href="../profile.php/change">Update your Info</a></li>';
+		
+			if($_SESSION['userData']['approval'] == 'Yes'){
+
+				echo '<li role="presentation"><a href="../profile.php/download">View and Download Projects</a></li>';
+			}
+
+		
+        	echo '<li role="presentation"><a href="../profile.php/compare">Compare Code</a></li>';
+		?>
     </ul>
 
 	<br>
 	<br>
 	<div class="container">
-		<!--
-		<div class="row">
-			<form class="form-horizontal" method="POST" action="upload.php" >
-				<fieldset>
-					<legend>Add a Project</legend>
-					<div class="form-group">
-						<label class="col-md-4 control-label" for="price">Upload Your Project file</label>
-						<div class="col-md-4">
-							<input id="upload" name="upload" type="file" class="form-control input-md">
-							<input type="submit" value="Upload" name="submit">
-						</div>
-					</div>
-				</fieldset>
-			</form> -->
-
-			<form class="form-horizontal" method="POST" action="profile.php/addAction" enctype="multipart/form-data">
+	
+			<form class="form-horizontal" method="POST" action="../profile.php/addAction" enctype="multipart/form-data">
 				<fieldset>	
 					<!-- Text input-->
 					<div class="form-group">
@@ -135,7 +135,7 @@
 					<div class="form-group">
 						<label class="col-md-4 control-label" for="price">Upload Your Project file</label>
 						<div class="col-md-4">
-							<input id="upload" name="upload" type="file" class="form-control input-md">
+							<input id="upload" name="upload" type="file" accept=".zip"  class="form-control input-md" required=""> 
 						</div>
 					</div>
 					
@@ -149,10 +149,7 @@
 				</fieldset>
 			</form>
 
-		</div>
-
-		<div id="resp"></div>
-	</div> <!-- /container -->
+	
 
 </body>
 </html>

@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<?php $num =0;
+$_SESSION['fromSignin'] = $num++; ?>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -46,14 +48,9 @@
  							<li class="hidden">
  								<a href="#page-top"></a>
  							</li>
- 							<li class="page-scroll">
- 								<a href="../index.php">Home</a>
- 							</li>
- 							<li class="page-scroll">
- 								<a href="templates/stuProfile.phtml">Profile</a>
- 							</li>
- 							<li class="page-scroll">
- 								<a href="templates/signin.phtml">Sign In</a>
+ 							
+                             <li class="page-scroll">
+ 								<a href="../profile.php/logout">Log Out</a>
  							</li>
  																										
  						</ul>
@@ -61,6 +58,8 @@
  					
  				</div>
     </nav>
+    <br>
+	<br>
 
 <div class="container">
     
@@ -69,8 +68,16 @@
             <img align="left" class="fb-image-lg" src="http://northbaynow.ca/wp-content/uploads/2016/05/tech.jpg" alt="Profile image example"/>
             <img align="left" class="fb-image-profile thumbnail" src="../src/propics/blank.jpg" alt="Profile image example" height="180" width="180"/>
             <div class="fb-profile-text">
-                <h1>Eli Macy</h1>
-                <p>Girls just wanna go fun.</p>
+                <h1>Welcome</h1>
+                <?php
+                    echo "<h1>'".$_SESSION['userData']['username']."'</h1>";
+                    echo "<h2>".$_SESSION['userData']['firstname']." ".$_SESSION['userData']['lastname']."</h2>";
+                    
+
+
+
+                ?>
+                
             </div>
         </div>
     </div> 
@@ -78,12 +85,32 @@
         <br>
     </div>
     <ul class="nav nav-pills" role="tablist">
-        <li role="presentation" class="active"><a href="stuProfile.phtml">Home</a></li>
-        <li role="presentation"><a href="../profile.php">Add your own Project</a></li>
-        <li role="presentation"><a href="../pending.php">Pending Accounts<span class="badge">0</span></a></li>
-        <li role="presentation"><a href="change.phtml">Update your Info</a></li>
-        <li role="presentation"><a href="../download.php">View and Download Projects</a></li>
-        <li role="presentation"><a href="compare.phtml">Compare Code</a></li>
+        <?php
+        	echo '<li role="presentation" class="active"><a href="../profile.php/home">Home</a></li>';
+		
+			if($_SESSION['userData']['approval'] == 'Yes'){
+				echo '<li role="presentation"><a href="../profile.php/addproj">Add your own Project</a></li>';
+			}
+		
+            if($_SESSION['userData']['accounttype'] == 'Admin'){
+                echo '<li role="presentation"><a href="../profile.php/pending">Pending Accounts<span class="badge">';
+                
+                $count = 0;
+                $count = countPending();
+                echo $count;
+                echo '</span></a></li>';
+            }
+        
+        	echo '<li role="presentation"><a href="../profile.php/change">Update your Info</a></li>';
+		
+			if($_SESSION['userData']['approval'] == 'Yes'){
+
+				echo '<li role="presentation"><a href="../profile.php/download">View and Download Projects</a></li>';
+			}
+
+		
+        	echo '<li role="presentation"><a href="../profile.php/compare">Compare Code</a></li>';
+		?>
     </ul>
     <div>
             <br>

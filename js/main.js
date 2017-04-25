@@ -4,18 +4,40 @@ console.log("hello I'm connected to the world");
 $(document).ready(function(){
     console.log("All Elements in the Page was successfully loaded, we can begin our application logic");
     retrieveProjects();
+
+    $("#signinBtn").click(function(){
+
+        //grabs data from the form elements
+        var data = {
+            username: $("#username").val(),
+            password:  $("#password").val()
+        };
+
+        $.post('../index.php/loginAction', data, function(response) {
+            response = JSON.parse(response);
+            if(response.status == "success"){
+                window.location.href = "../profile.php/home";
+                localStorage.setItem("Login-userid", response.userid);
+            }else{
+                alert("Invalid Login");
+            }
+
+        });
+    });
+
+
 });
 
 
 function retrieveProjects(){
 
-    $.get("index.php/projects", processAllProjects, "json");
+    $.get("../index.php/projects", processAllProjects, "json");
     
 }
 
 function retrieveProjects2(){
 
-    $.get("download.php/viewDld", processAllProjects, "json");
+    //$.get("download.php/viewDld", processAllProjects, "json");
     
 }
 
@@ -61,7 +83,7 @@ function createTable2(records){
     $(sec_id).html(htmlStr);
 }
 
-
+/*
 $(function() {
     
   $('a[href*=#]:not([href=#])').click(function() {
@@ -77,8 +99,21 @@ $(function() {
     }
   });
 
+}); */
 
-  
+$(function(){
+    $('INPUT[type="file"]').change(function () {
+        var ext = this.value.match(/\.(.+)$/)[1];
+        switch (ext) {
+            case 'zip':
+            case 'rar':
+            case '7z':
+                $('#saveBtn').attr('disabled', false);
+                break;
+            default:
+                alert('This is not an allowed file type.');
+                this.value = '';
+        }
+    });
 });
-
 console.log("JavaScript file was successfully loaded in the page");

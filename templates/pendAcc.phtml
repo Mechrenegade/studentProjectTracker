@@ -6,28 +6,25 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Profile</title>
+    <title>Pending</title>
 
   
     <!-- Bootstrap core CSS -->
-    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/modules/exporting.js"></script>
-    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 
 
     
-    <link href="css/signin.css" rel="stylesheet">
+    <link href="../css/signin.css" rel="stylesheet">
     
-    <script src="js/ie10-viewport-bug-workaround.js"></script>
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-    <link href="css/signin.css" rel="stylesheet">
+    <script src="../js/ie10-viewport-bug-workaround.js"></script>
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
+    <link href="../css/signin.css" rel="stylesheet">
     
-    <script src="js/ie10-viewport-bug-workaround.js"></script>
-    <script src="js/chart.js"></script>
-    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="../js/ie10-viewport-bug-workaround.js"></script>
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
     
     </head>
 
@@ -46,31 +43,27 @@
  							<li class="hidden">
  								<a href="#page-top"></a>
  							</li>
- 							<li class="page-scroll">
- 								<a href="../index.php">Home</a>
+ 					
+                             <li class="page-scroll">
+ 								<a href="../profile.php/logout">Log Out</a>
  							</li>
- 							<li class="page-scroll">
- 								<a href="templates/stuProfile.phtml">Profile</a>
- 							</li>
- 							<li class="page-scroll">
- 								<a href="templates/signin.phtml">Sign In</a>
- 							</li>
- 																										
+ 																												
  						</ul>
  					</div>
  					
  				</div>
     </nav>
+    <br>
+	<br>
 
 <div class="container">
     
     <div class="container">
         <div class="fb-profile">
             <img align="left" class="fb-image-lg" src="http://northbaynow.ca/wp-content/uploads/2016/05/tech.jpg" alt="Profile image example"/>
-            <img align="left" class="fb-image-profile thumbnail" src="src/propics/blank.jpg" alt="Profile image example" height="180" width="180"/>
+            <img align="left" class="fb-image-profile thumbnail" src="../src/propics/blank.jpg" alt="Profile image example" height="180" width="180"/>
             <div class="fb-profile-text">
-                <h1>Eli Macy</h1>
-                <p>Girls just wanna go fun.</p>
+             
             </div>
         </div>
     </div> 
@@ -78,12 +71,32 @@
         <br>
     </div>
         <ul class="nav nav-pills" role="tablist">
-            <li role="presentation"><a href="templates/stuProfile.phtml">Home</a></li>
-            <li role="presentation"><a href="profile.php">Add your own Project</a></li>
-            <li role="presentation"  class="active"><a href="pending.php">Pending Accounts<span class="badge"><?php echo "0"; ?></span></a></li>
-            <li role="presentation"><a href="templates/change.phtml">Update your Info</a></li>
-            <li role="presentation"><a href="download.php">View and Download Projects</a></li>
-            <li role="presentation"><a href="templates/compare.phtml">Compare Code</a></li>
+            <?php
+        	echo '<li role="presentation"><a href="../profile.php/home">Home</a></li>';
+		
+			if($_SESSION['userData']['approval'] == 'Yes'){
+				echo '<li role="presentation"><a href="../profile.php/addproj">Add your own Project</a></li>';
+			}
+		
+            if($_SESSION['userData']['accounttype'] == 'Admin'){
+                echo '<li role="presentation" class="active"><a href="../profile.php/pending">Pending Accounts<span class="badge">';
+                
+                $count = 0;
+                $count = countPending();
+                echo $count;
+                echo '</span></a></li>';
+            }
+        
+        	echo '<li role="presentation"><a href="../profile.php/change">Update your Info</a></li>';
+		
+			if($_SESSION['userData']['approval'] == 'Yes'){
+
+				echo '<li role="presentation"><a href="../profile.php/download">View and Download Projects</a></li>';
+			}
+
+		
+        	echo '<li role="presentation"><a href="../profile.php/compare">Compare Code</a></li>';
+		?>
         </ul>
     <div>
             <br>
@@ -91,43 +104,60 @@
     </div>
     
 </div> <!-- /container -->
-<table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Project ID</th>
-                    <th>Project Name</th>
-                    <th>Course Code</th>
-                    <th>Course Name</th>
-                    <th>GitHub Link</th>
-                    <th>Year</th>
-                    <th>Project File</th>
-                    <th>Group Members</th>
-                </tr>
-            </thead>
-            <tbody>
-    <?php
-                                                
-        $conn = getDBConnection();
-        $sql = "SELECT * FROM `project`";
-        $res = $conn->query($sql);
-        if ($res){
-            $row = $res->fetch_assoc();
-            while ($row != null){
-                // print the rows of the table
-                echo "<tr>";
-                echo "<td>" . $row['id'] . "</td>";
-                echo "<td>" . $row['projname'] . "</td>";
-                echo "<td>" . $row['coursecode'] . "</td>";
-                echo "<td>" . $row['coursename'] . "</td>";
-                echo "<td>" . $row['githublink'] . "</td>";
-                echo "<td>" . $row['year'] . "</td>";
-                echo "<td>" . $row['file'] . "</td>";
-                echo "<td>" . $row['members'] . "</td>";
-                echo "</tr>";
+
+    <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>User Name</th>
+                        <th>first name</th>
+                        <th>last Name</th>
+                        <th>email</th>
+                        <th>School Id Num</th>
+                        <th>Account Type</th>
+                        <th>Approval</th>
+                        <th>Approve This Account</th>
+                        <th>Delete This request</th>
+                    </tr>
+                </thead>
+                <tbody>
+        <?php
+                                                    
+            $conn = getDBConnection();
+            $sql = "SELECT * FROM `user` WHERE `approval` = 'NO'";
+            $res = $conn->query($sql);
+            $count = 0;
+            if ($res){
                 $row = $res->fetch_assoc();
+                while ($row != null){
+                    // print the rows of the table
+                    echo "<tr>";
+                    $id = $row['id'];
+                    echo "<td>" . $row['username'] . "</td>";
+                    echo "<td>" . $row['firstname'] . "</td>";
+                    echo "<td>" . $row['lastname'] . "</td>";
+                    echo "<td>" . $row['Email'] . "</td>";
+                    echo "<td>" . $row['schoolIdnum'] . "</td>";
+                    echo "<td>" . $row['accounttype'] . "</td>";
+                    echo "<td>" . $row['approval'] . "</td>";
+                    echo "<td>";
+                    echo '<form class="form-horizontal" method="POST" action="../profile.php/approve">';
+                    echo '<input class="number_format" type="hidden" id="id" name="id" value="'.$id.'">';
+                    echo '<input class="btn btn-lg btn-primary btn-block" type="submit" id="approveBtn" value="Approve">';
+                    echo '</form>';
+                    echo "</td>";
+                    echo "<td>";
+                    echo '<form class="form-horizontal" method="POST" action="../profile.php/approve">';
+                    echo '<input class="number_format" type="hidden" id="id" name="id" value="'.$id.'">';
+                    echo '<input class="btn btn-lg btn-primary btn-block" type="submit" id="approveBtn" value="Delete">';
+                    echo '</form>';
+                    echo "</td>";
+                    echo "</tr>";
+                    
+                    $row = $res->fetch_assoc();
+                }
             }
-        }
-    ?>
+          
+        ?>
 
 </body>
 </html>
